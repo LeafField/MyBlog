@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { getSortedPostData } from "../../lib/post";
 
+import Layout from "../../component/Layout";
+
 const pageViewPost = 2;
 
 export const getStaticPaths = async () => {
@@ -40,18 +42,20 @@ export const getStaticProps = async ({ params }) => {
 const Page = ({ viewPost, nowArryCount }) => {
   return (
     <>
-      <p>{nowArryCount}</p>
-      {viewPost.map(({ id, title, date, thumbnail }) => (
-        <article key={id}>
-          <Link href={`/posts/${id}`}>
-            <h2>{title}</h2>
-            <p>{date}</p>
-            <img src={`${thumbnail}`} alt="" />
-          </Link>
-        </article>
-      ))}
-      <Link href={`/page/${nowArryCount - 1}`}>前へ</Link>
-      <Link href={`/page/${nowArryCount + 1}`}>次へ</Link>
+      <Layout>
+        <p>{nowArryCount}</p>
+        {viewPost.map(({ id, title, date, thumbnail }) => (
+          <article key={id}>
+            <Link href={`/posts/${id}`}>
+              <h2>{title}</h2>
+              <p>{date}</p>
+              <img src={`${thumbnail}`} alt="" />
+            </Link>
+          </article>
+        ))}
+        <Link href={`/page/${nowArryCount - 1}`}>前へ</Link>
+        <Link href={`/page/${nowArryCount + 1}`}>次へ</Link>
+      </Layout>
     </>
   );
 };
