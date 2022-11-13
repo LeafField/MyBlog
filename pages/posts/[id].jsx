@@ -12,7 +12,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const postData = await getPostData(params.id);
-  console.log(postData);
   return {
     props: {
       postData,
@@ -25,7 +24,7 @@ export default function Posts({ postData }) {
     <>
       <h1>{postData.title}</h1>
       <h2>{postData.date}</h2>
-      <p>{postData.thumbnail}</p>
+      <img src={`${postData.thumbnail}`} alt="" />
       <div dangerouslySetInnerHTML={{ __html: postData.contentHTML }} />;
     </>
   );

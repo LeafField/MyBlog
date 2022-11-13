@@ -28,6 +28,7 @@ export default function Home({ allPostData }) {
           </Link>
         </article>
       ))}
+      <Link href={`/page/1`}>and more...</Link>
     </>
   );
 }
