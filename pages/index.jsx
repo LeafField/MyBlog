@@ -1,5 +1,4 @@
-import styles from "../styles/Home.module.css";
-
+import styled from "styled-components";
 import { getSortedPostData } from "../lib/post";
 import Link from "next/link";
 
@@ -17,6 +16,7 @@ export default function Home({ allPostData }) {
   return (
     <>
       <h1>Hello World</h1>
+      <TitleH1>Hello styled-components</TitleH1>
       <p>nextjsの練習用ブログ</p>
       <p>{allPostData.length}</p>
       {allPostData.map(({ id, title, date, thumbnail }) => (
@@ -32,3 +32,7 @@ export default function Home({ allPostData }) {
     </>
   );
 }
+
+const TitleH1 = styled.h1`
+  color: aqua;
+`;
