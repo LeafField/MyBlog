@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Header = () => {
+const Header = ({ isActive }) => {
   return (
-    <Container>
+    <Container isActive={isActive}>
       <Title>
         <Link href={`/`}>
           <img src="/Yoko's portoforio.png" />
@@ -13,6 +13,7 @@ const Header = () => {
           <h1>Leaf Field</h1>
         </Link>
       </Title>
+      {isActive ? <p>active</p> : <p>noActive</p>}
       <Nav>
         <ul>
           <li>portfolio</li>
@@ -46,13 +47,26 @@ const Title = styled.div`
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 1280px;
+  height: 75px;
+  position: fixed;
+  transition: all 0.3s;
+  ${(props) =>
+    props.isActive ||
+    css`
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    `}
 `;
 
 const Nav = styled.nav`
   width: 400px;
   margin-right: 40px;
   margin-top: 20px;
+
   ul {
     display: flex;
     flex-direction: row;
@@ -60,7 +74,6 @@ const Nav = styled.nav`
 
     li {
       list-style: none;
-      color: white;
       position: relative;
       &::after {
         content: "";
@@ -70,6 +83,12 @@ const Nav = styled.nav`
         height: 1px;
         width: 100%;
         background-color: black;
+        transform: scale(0);
+        transform-origin: center;
+        transition: all 0.3s;
+      }
+      &:hover::after {
+        transform: scale(1);
       }
     }
   }

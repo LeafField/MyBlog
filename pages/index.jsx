@@ -31,7 +31,3 @@ export default function Home({ allPostData }) {
     </>
   );
 }
-
-const TitleH1 = styled.h1`
-  color: aqua;
-`;
