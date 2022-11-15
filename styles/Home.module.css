@@ -1,3 +1,9 @@
+.animetest{
+  width: 150px;
+  height: 150px;
+  background-color: black;
+}
+
 .container {
   padding: 0 2rem;
 }
