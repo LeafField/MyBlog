@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Head from "next/head";
+import { gsap } from "gsap";
 
 import Header from "./Header";
 import { useEffect, useRef } from "react";
@@ -12,9 +12,9 @@ const Layout = ({ children }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        setIsActive(true);
-      } else {
         setIsActive(false);
+      } else {
+        setIsActive(true);
       }
     });
     observer.observe(headerRef.current);
