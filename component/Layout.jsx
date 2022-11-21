@@ -6,25 +6,11 @@ import Header from "./Header";
 import { useEffect, useRef } from "react";
 
 const Layout = ({ children }) => {
-  const headerRef = useRef();
-  const [isActive, setIsActive] = useState(true);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsActive(false);
-      } else {
-        setIsActive(true);
-      }
-    });
-    observer.observe(headerRef.current);
-  }, []);
-
   return (
     <>
       <GlobalContainer>
-        <Header isActive={isActive} />
-        <EmptyDiv ref={headerRef} />
+        <Header />
+        <EmptyDiv />
         {children}
       </GlobalContainer>
     </>

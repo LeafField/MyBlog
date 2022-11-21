@@ -22,11 +22,11 @@ export const getStaticProps = async ({ params }) => {
 
 export default function Posts({ postData }) {
   return (
-    <Layout>
+    <>
       <h1>{postData.title}</h1>
       <h2>{postData.date}</h2>
       <img src={`${postData.thumbnail}`} alt="" />
       <div dangerouslySetInnerHTML={{ __html: postData.contentHTML }} />;
-    </Layout>
+    </>
   );
 }

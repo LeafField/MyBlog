@@ -14,18 +14,16 @@ export const getStaticProps = async () => {
 export default function Home({ allPostData }) {
   return (
     <>
-      <Layout>
-        {allPostData.slice(0, 5).map(({ id, title, date, thumbnail }) => (
-          <article key={id}>
-            <Link href={`/posts/${id}`}>
-              <h2>{title}</h2>
-              <p>{date}</p>
-              <img src={`${thumbnail}`} alt="" />
-            </Link>
-          </article>
-        ))}
-        <Link href={`/page/1`}>and more...</Link>
-      </Layout>
+      {allPostData.slice(0, 5).map(({ id, title, date, thumbnail }) => (
+        <article key={id}>
+          <Link href={`/posts/${id}`}>
+            <h2>{title}</h2>
+            <p>{date}</p>
+            <img src={`${thumbnail}`} alt="" />
+          </Link>
+        </article>
+      ))}
+      <Link href={`/page/1`}>and more...</Link>
     </>
   );
 }

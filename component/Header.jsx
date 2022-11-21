@@ -1,10 +1,10 @@
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import style from "./Header.module.scss";
 
 const Header = ({ isActive }) => {
   return (
-    <div className={`${style.container} ${isActive && style.active}`}>
+    <div className={`${style.container}`}>
       <div className={style.title}>
         <Link href={`/`}>
           <img src="/Yoko's portoforio.png" />
@@ -13,7 +13,6 @@ const Header = ({ isActive }) => {
           <h1>Leaf Field</h1>
         </Link>
       </div>
-      {isActive ? <p>active</p> : <p>noActive</p>}
       <nav className={style.navi}>
         <ul>
           <li>portfolio</li>
