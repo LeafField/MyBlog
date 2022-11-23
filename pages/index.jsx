@@ -1,6 +1,5 @@
 import { getSortedPostData } from "../lib/post";
 import Link from "next/link";
-import Layout from "../component/Layout";
 
 export const getStaticProps = async () => {
   const allPostData = getSortedPostData();

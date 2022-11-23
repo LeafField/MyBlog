@@ -2,8 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { getSortedPostData } from "../../lib/post";
 
-import Layout from "../../component/Layout";
-
 const pageViewPost = 2;
 
 export const getStaticPaths = async () => {
