@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { getSortedPostData } from "../../lib/post";
 
-const pageViewPost = 2;
+const pageViewPost = 5;
 
 export const getStaticPaths = async () => {
   const allPostData = getSortedPostData();
