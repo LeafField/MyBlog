@@ -25,6 +25,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   const nowArryCount = parseInt(params.page);
   const allPostData = getSortedPostData();
+  const maxPage = Math.ceil(allPostData.length / pageViewPost);
   const viewPost = allPostData.slice(
     (parseInt(nowArryCount) - parseInt(1)) * pageViewPost,
     parseInt(nowArryCount) * parseInt(pageViewPost)
@@ -33,11 +34,12 @@ export const getStaticProps = async ({ params }) => {
     props: {
       viewPost,
       nowArryCount,
+      maxPage,
     },
   };
 };
 
-const Page = ({ viewPost, nowArryCount }) => {
+const Page = ({ viewPost, nowArryCount, maxPage }) => {
   return (
     <>
       <p>{nowArryCount}</p>
@@ -50,8 +52,12 @@ const Page = ({ viewPost, nowArryCount }) => {
           </Link>
         </article>
       ))}
-      <Link href={`/page/${nowArryCount - 1}`}>前へ</Link>
-      <Link href={`/page/${nowArryCount + 1}`}>次へ</Link>
+      {nowArryCount !== 1 && (
+        <Link href={`/page/${nowArryCount - 1}`}>前へ</Link>
+      )}
+      {nowArryCount !== maxPage && (
+        <Link href={`/page/${nowArryCount + 1}`}>次へ</Link>
+      )}
     </>
   );
 };
