@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { getSortedPostData } from "../../lib/post";
+import Pagination from "../../component/Pagination";
+import styles from "../../styles/page.module.scss";
 
 const pageViewPost = 5;
 
@@ -30,16 +32,19 @@ export const getStaticProps = async ({ params }) => {
     (parseInt(nowArryCount) - parseInt(1)) * pageViewPost,
     parseInt(nowArryCount) * parseInt(pageViewPost)
   );
+  const pageCount = Math.ceil(allPostData.length / pageViewPost);
+  const pagination = allPostData.slice(0, pageCount).map((_, i) => i + 1);
   return {
     props: {
       viewPost,
       nowArryCount,
       maxPage,
+      pagination,
     },
   };
 };
 
-const Page = ({ viewPost, nowArryCount, maxPage }) => {
+const Page = ({ viewPost, nowArryCount, maxPage, pagination }) => {
   return (
     <>
       <p>{nowArryCount}</p>
@@ -52,12 +57,20 @@ const Page = ({ viewPost, nowArryCount, maxPage }) => {
           </Link>
         </article>
       ))}
-      {nowArryCount !== 1 && (
-        <Link href={`/page/${nowArryCount - 1}`}>前へ</Link>
-      )}
-      {nowArryCount !== maxPage && (
-        <Link href={`/page/${nowArryCount + 1}`}>次へ</Link>
-      )}
+
+      <div className={styles.pagination}>
+        {nowArryCount !== 1 && (
+          <Link href={`/page/${nowArryCount - 1}`}>前へ</Link>
+        )}
+        {pagination.map((page) => (
+          <Link href={`/page/${page}`} key={page}>
+            <Pagination page={page} />
+          </Link>
+        ))}
+        {nowArryCount !== maxPage && (
+          <Link href={`/page/${nowArryCount + 1}`}>次へ</Link>
+        )}
+      </div>
     </>
   );
 };

@@ -1,0 +1,12 @@
+.pagination {
+  display: flex;
+  & > a {
+    border: 1px solid rgb(102, 100, 100);
+    padding: 5px 10px;
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
