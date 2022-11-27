@@ -1,6 +1,10 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { getAllPostIDs, getPostData, getNext, getPrev } from "../../lib/post";
+
+import hljs from "highlight.js";
+import javascript from "highlight.js/lib/languages/javascript";
+hljs.registerLanguage("javascript", javascript);
 
 export const getStaticPaths = async () => {
   const paths = getAllPostIDs();
@@ -25,6 +29,9 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export default function Posts({ postData, nextID, prevID }) {
+  useEffect(() => {
+    hljs.initHighlighting();
+  });
   return (
     <>
       <h1>{postData.title}</h1>

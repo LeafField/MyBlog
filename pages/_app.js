@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Layout from '../component/Layout'
 import '../styles/globals.css'
+import "highlight.js/styles/github-dark-dimmed.css"
 
 function MyApp({ Component, pageProps }) {
   return (
